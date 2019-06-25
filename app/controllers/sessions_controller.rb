@@ -1,6 +1,18 @@
 class SessionsController < ApplicationController
 
-  def welcome 
+  def welcome
+
+  end
+
+  def new
+
+  end
+
+  def create
+
+  end
+
+  def destroy
 
   end
 

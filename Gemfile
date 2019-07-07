@@ -50,6 +50,7 @@ group :development, :test do
   # Use RSpec to test different parts of app
   gem 'rspec-rails'
   gem 'capybara', '>= 2.15'
+  gem 'shoulda-matchers'
   gem 'factory_bot_rails'
 end
 
@@ -70,7 +71,7 @@ group :test do
   # Easy installation and use of chromedriver to run system tests with Chrome
   # gem 'chromedriver-helper'
   gem 'database_cleaner'
-  gem 'shoulda-matchers'
+
   gem 'faker'
 end
 

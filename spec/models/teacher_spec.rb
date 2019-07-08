@@ -4,19 +4,22 @@ RSpec.describe Teacher, :type => :model do
 
   # Association test
   # ensure Teacher model has a 1:m relationship with the Classroom model
-  it { should have_many(:classrooms) }
+  context "associations" do
+    it { should have_many(:classrooms) }
+  end
 
   # Validation tests
   # ensure columns name, email, password and subject are present before saving
   # ensure email is unique
   # ensure password is hashed with bcrypt
-
-  it { should validate_presence_of(:name) }
-  it { should validate_presence_of(:email) }
-  it { should validate_presence_of(:password) }
-  it { should validate_presence_of(:subject) }
-  it { should validate_uniqueness_of(:email) }
-  it { should have_secure_password }
+  context "validations" do
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:email) }
+    it { should validate_presence_of(:password) }
+    it { should validate_presence_of(:subject) }
+    it { should validate_uniqueness_of(:email) }
+    it { should have_secure_password }
+  end 
 
 end
 

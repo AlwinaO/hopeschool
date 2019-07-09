@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Classroom, :type => :model do
 
+  it "has a valid factory" do
+    Factory.create(:classroom).should be_valid
+  end
+
   # ensure this join table is setup with user-submittable attributes
   context "columns" do
     it { should have_db_column(:name).of_type(:string)}
@@ -26,7 +30,7 @@ RSpec.describe Classroom, :type => :model do
 
   context "#classroom_list" do
     it "lists all the classrooms by name and location" do
-      
+
 
     end
   end

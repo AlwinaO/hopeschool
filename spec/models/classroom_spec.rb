@@ -1,9 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Classroom, :type => :model do
+  let(:classroom) {FactoryBot.create(:classroom)}
 
   it "has a valid factory" do
     Factory.create(:classroom).should be_valid
+
   end
 
   # ensure this join table is setup with user-submittable attributes
@@ -28,12 +30,12 @@ RSpec.describe Classroom, :type => :model do
     it { should belong_to(:semester) }
   end
 
-  context "#classroom_list" do
-    it "lists all the classrooms by name and location" do
-
-
-    end
-  end
+  # context "#classroom_list" do
+  #   it "lists all the classrooms by name and location" do
+  #     expect(self.classroom_list).to eq(name and location)
+  #
+  #   end
+  # end
 
   # context "#teacher_name" do
   #   it "displays the teacher's name" do

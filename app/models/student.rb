@@ -1,6 +1,7 @@
 class Student < ApplicationRecord
-  has_many :classrooms
-  has_many :teachers, through: :classrooms
+  belongs_to :classrooms
+  belongs_to :teacher
+  has_many :semesters
 
-  validates :name, :grade, presence: true 
+  validates :name, :grade, presence: true
 end

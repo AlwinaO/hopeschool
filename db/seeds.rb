@@ -15,7 +15,7 @@ require "faker"
     password:  Faker::Internet.password,
     subject:  Faker::Educator.subject)
 
-  teacher.classrooms.create
+  # teacher.classroom.create
 end
 
 8.times do

@@ -10,21 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_08_010134) do
+ActiveRecord::Schema.define(version: 2019_07_21_162742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "classroom_semesters", force: :cascade do |t|
+    t.bigint "classroom_id"
+    t.bigint "semester_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["classroom_id"], name: "index_classroom_semesters_on_classroom_id"
+    t.index ["semester_id"], name: "index_classroom_semesters_on_semester_id"
+  end
 
   create_table "classrooms", force: :cascade do |t|
     t.string "name"
     t.string "location"
     t.bigint "teacher_id"
-    t.bigint "student_id"
-    t.bigint "semester_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["semester_id"], name: "index_classrooms_on_semester_id"
-    t.index ["student_id"], name: "index_classrooms_on_student_id"
     t.index ["teacher_id"], name: "index_classrooms_on_teacher_id"
   end
 
@@ -35,11 +40,29 @@ ActiveRecord::Schema.define(version: 2019_07_08_010134) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "student_semesters", force: :cascade do |t|
+    t.bigint "student_id"
+    t.bigint "semester_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["semester_id"], name: "index_student_semesters_on_semester_id"
+    t.index ["student_id"], name: "index_student_semesters_on_student_id"
+  end
+
   create_table "students", force: :cascade do |t|
     t.string "name"
     t.string "grade"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "teacher_semesters", force: :cascade do |t|
+    t.bigint "teacher_id"
+    t.bigint "semester_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["semester_id"], name: "index_teacher_semesters_on_semester_id"
+    t.index ["teacher_id"], name: "index_teacher_semesters_on_teacher_id"
   end
 
   create_table "teachers", force: :cascade do |t|
@@ -51,4 +74,10 @@ ActiveRecord::Schema.define(version: 2019_07_08_010134) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "classroom_semesters", "classrooms"
+  add_foreign_key "classroom_semesters", "semesters"
+  add_foreign_key "student_semesters", "semesters"
+  add_foreign_key "student_semesters", "students"
+  add_foreign_key "teacher_semesters", "semesters"
+  add_foreign_key "teacher_semesters", "teachers"
 end

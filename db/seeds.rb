@@ -9,12 +9,6 @@ require "faker"
 
 
 15.times do
-  Classroom.create(
-    name: Faker::Superhero.name,
-    location: Faker::Address.building_number)
-end
-
-15.times do
   teacher = Teacher.create(
     name:  Faker::Name.first_name,
     email:  Faker::Internet.email,
@@ -36,4 +30,10 @@ end
     name: Faker::Name.first_name,
     grade: Faker::Number.within(1..10)
   )
+end
+
+15.times do
+  Classroom.create(
+    name: Faker::Superhero.name,
+    location: Faker::Address.building_number)
 end

@@ -1,7 +1,10 @@
 class Semester < ApplicationRecord
-  has_many :classrooms
-  has_many :teachers
-  has_many :students
+  has_many :classroom_semesters
+  has_many :classrooms, through: :classroom_semesters
+  has_many :teacher_semesters
+  has_many :teachers, through: :teacher_semesters
+  has_many :student_semesters
+  has_many :students, through: :student_semesters
 # add has_many through for join tables
   validates :quarter, :year, presence: true
 end

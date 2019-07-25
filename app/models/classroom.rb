@@ -6,6 +6,8 @@ class Classroom < ApplicationRecord
 
   validates :name, :location, presence: true
   validates :name, :location, uniqueness: true
+  validates :teacher_id, uniqueness: true
+
 
   # list the teacher, number of students and the current semester
 

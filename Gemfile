@@ -42,6 +42,7 @@ gem 'bootstrap-sass', '~> 3.4.1'
 
 gem 'jquery-rails'
 
+gem 'faker'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -71,8 +72,6 @@ group :test do
   # Easy installation and use of chromedriver to run system tests with Chrome
   # gem 'chromedriver-helper'
   gem 'database_cleaner'
-
-  gem 'faker'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

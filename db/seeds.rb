@@ -7,39 +7,66 @@ require "faker"
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# comment out teachers so it doesn't add 15 new teacher
+Teacher.destroy_all
+Classroom.destroy_all
+Student.destroy_all
+Semester.destroy_all
+
 15.times do
-  Teacher.create(
-    name:  Faker::Name.first_name,
+  Teacher.create!(
+    name:  Faker::Name.unique.first_name,
     email:  Faker::Internet.email,
     password:  Faker::Internet.password,
-    subject:  Faker::Educator.subject)
-# new_teacher.build_classroom
+    subject:  Faker::Educator.subject
+  )
+end
+p "Created #{Teacher.count} teachers."
 
+15.times do
+  Classroom.create!(
+    name: Faker::Superhero.unique.name,
+    location: Faker::Address.building_number,
+    teacher_id: Faker::Number.within(1..15)
+  )
+end
+p "Created #{Classroom.count} classrooms."
+
+100.times do
+  Student.create!({
+    name: Faker::Name.first_name,
+    grade: Faker::Number.within(1..10),
+    score: Faker::Number.normal(75, 25),
+    teacher_id: Faker::Number.within(1..15),
+    classroom_id: Faker::Number.within(1..15)
+  })
+end
+p "Created #{Student.count} students."
+
+8.times do
+  Semester.create!(
+    quarter:  Faker::Space.planet,
+    year: Faker::Date.between(1.year.ago, 1.year.from_now)
+  )
+end
+p "Created #{Semester.count} semesters."
+
+10.times do
+  TeacherSemester.create!(
+    teacher_id: Faker::Number.unique.within(1..15),
+    semester_id: Faker::Number.within(1..8)
+  )
 end
 
-# 8.times do
-#   Semester.create(
-#     quarter:  Faker::Space.planet,
-#     year: Faker::Date.between(1.year.ago, 1.year.from_now)
-#   )
-# end
-#
-# 50.times do
-#   Student.create(
-#     name: Faker::Name.first_name,
-#     grade: Faker::Number.within(1..10)
-#   )
-# end
-teacher_ids = Teacher.all.map {|t| t.id}
-# [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-# t_id = teacher_ids.pop
-# t_id = 15
-# [1,2,3,4,5,6,7,8,9,10,11,12,13,14]
-15.times do
-  new_classroom = Classroom.new(
-                  name: Faker::Superhero.name,
-                  location: Faker::Address.building_number)
-  new_classroom.teacher_id = teacher_ids.pop()
-  new_classroom.save
+10.times do
+  ClassroomSemester.create!(
+    classroom_id: Faker::Number.within(1..15),
+    semester_id: Faker::Number.within(1..8)
+  )
+end
+
+20.times do
+  StudentSemester.create!(
+    student_id: Faker::Number.unique.within(1..20),
+    semester_id: Faker::Number.within(1..8)
+  )
 end

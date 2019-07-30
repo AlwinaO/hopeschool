@@ -4,7 +4,7 @@ RSpec.describe Classroom, :type => :model do
   let(:classroom) {FactoryBot.create(:classroom)}
 
   it "has a valid factory" do
-    Factory.create(:classroom).should be_valid
+    create(:classroom).should be_valid
 
   end
 
@@ -26,8 +26,9 @@ RSpec.describe Classroom, :type => :model do
   # ensure classroom record belongs to a teacher, student and semseter
   context "associations" do
     it { should belong_to(:teacher) }
-    it { should belong_to(:student) }
-    it { should belong_to(:semester) }
+    it { should have_many(:students) }
+    it { should have_many(:classroom_semesters) }
+    it { should have_many(:semesters).through(:classroom_semesters) }
   end
 
   # context "#classroom_list" do

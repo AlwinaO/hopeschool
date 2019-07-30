@@ -5,7 +5,10 @@ RSpec.describe Teacher, :type => :model do
   # Association test
   # ensure Teacher model has a 1:m relationship with the Classroom model
   context "associations" do
-    it { should have_many(:classrooms) }
+    it { should have_one(:classroom) }
+    it { should have_many(:students) }
+    it { should have_many(:teacher_semesters) }
+    it { should have_many(:semesters).through(:teacher_semesters) }
   end
 
   # Validation tests
@@ -19,7 +22,7 @@ RSpec.describe Teacher, :type => :model do
     it { should validate_presence_of(:subject) }
     it { should validate_uniqueness_of(:email) }
     it { should have_secure_password }
-  end 
+  end
 
 end
 

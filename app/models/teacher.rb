@@ -9,4 +9,5 @@ class Teacher < ApplicationRecord
   validates :name, :email, :subject, presence: true
   validates :email, uniqueness: true
 
+  #add scope method to find students with the highest or lowest score
 end

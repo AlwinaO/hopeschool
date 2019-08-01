@@ -10,6 +10,18 @@
   </head>
 
   <body>
+    <div class="container"  role="main">
+      <nav class="navbar fixed-top navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Fixed top</a>
+      </nav>
+        <div>
+
+          <% flash.each do |key, value| %>
+            <%= content_tag :div, value, class: "alert #{key}" %>
+          <% end %>
+        </div>
     <%= yield %>
+    </div>
   </body>
+
 </html>

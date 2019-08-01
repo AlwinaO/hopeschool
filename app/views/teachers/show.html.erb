@@ -1,3 +1,11 @@
 <h2>Welcome, <%= @teacher.name %>! </h2>
 
 <h4>Here are a list of your students:</h4>
+
+<ol>
+  <% @teacher.students.each do |s| %>
+  <li> <%= link_to s.name, teacher_student_path(s) %> - <%= s.score %> </li>
+  <% end %>
+</ol>
+
+<p> <%= link_to "Add a New Student", new_teacher_student_path(@teacher) %> </p>

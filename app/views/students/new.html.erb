@@ -1,0 +1,16 @@
+<h1>Create a New Student!</h1>
+
+<%= form_for [:teacher, @student] do |f| %>
+
+<%= f.label :name %>
+<%= f.text_field :name %><br><br>
+
+<%= f.label :grade %>
+<%= f.number_field :grade %><br><br>
+
+<%= f.label :score %>
+<%= f.number_field :score %><br><br>
+
+<%= f.submit "Create Student" %>
+
+<% end %>

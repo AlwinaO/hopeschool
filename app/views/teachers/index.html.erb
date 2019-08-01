@@ -1,0 +1,9 @@
+<h1>Teachers</h1>
+
+<ul>
+  <% @teachers.each do |t| %>
+    <li><%= link_to t.name, teacher_path(t) %> - <%= t.subject %>
+    </li>
+
+  <% end %>
+</ul>

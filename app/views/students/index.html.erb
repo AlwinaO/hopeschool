@@ -1,0 +1,7 @@
+<h1>Students</h1>
+
+<% @students.each do |student| %>
+  <ol>
+    <li> <%= link_to student.name, student_path(student) %> - <%= s.score %></li>
+  </ol>
+<% end %>

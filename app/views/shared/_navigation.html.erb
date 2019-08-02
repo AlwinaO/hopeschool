@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: pink" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon"></span>
+      </button>
+
+          <%= link_to "Hope School", root_path, class: "navbar-brand" %>
+         <% if !current_teacher %>
+           <%= link_to 'Create A New Teacher Profile', new_teacher_path, class: "navbar-brand" %>
+           <%= link_to 'Sign in to your profile', login_path, class: "navbar-brand" %>
+         <% else %>
+           <%= link_to current_teacher.name + "'s Profile", teacher_path(current_teacher), class: "navbar-brand" %>
+           <%= link_to 'Log Out', logout_path, method: :delete, class: "navbar-brand" %>
+         <% end %>
+
+    </div>
+
+  </div>
+
+</nav>

@@ -40,6 +40,8 @@ gem 'dotenv-rails'
 
 gem 'bootstrap-sass', '~> 3.4.1'
 
+gem 'autoprefixer-rails'
+
 gem 'jquery-rails'
 
 gem 'faker'

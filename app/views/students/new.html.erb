@@ -1,16 +1,39 @@
 <h1>Create a New Student!</h1>
 
-<%= form_for [:teacher, @student] do |f| %>
+<%= form_for([:teacher, @student], html: {class: 'form-horizontal'}) do |f| %>
+  <% if @student.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
 
-<%= f.label :name %>
-<%= f.text_field :name %><br><br>
+      <ul>
+      <% @student.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<%= f.label :grade %>
-<%= f.number_field :grade %><br><br>
-
-<%= f.label :score %>
-<%= f.number_field :score %><br><br>
-
-<%= f.submit "Create Student" %>
-
+  <div class="field form-group">
+    <%= f.label :name, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="field form-group">
+    <%= f.label :grade, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.number_field :grade, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="field form-group">
+    <%= f.label :score, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.number_field :score, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="actions form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit %>
+    </div>
+  </div>
 <% end %>

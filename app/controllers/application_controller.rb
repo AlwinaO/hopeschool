@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 
 
     def current_teacher
-      @current_teacher ||= Teacher.find_by(id: session[:teacher_id][:email]) if session[:teacher_id][:email]
+      @current_teacher ||= Teacher.find_by(id: session[:teacher_id]) if session[:teacher_id]
     end
 
     def logged_in?

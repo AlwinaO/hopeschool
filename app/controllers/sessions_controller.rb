@@ -22,8 +22,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session.clear
-    redirect_to '/'
+    session.delete(:teacher_id)
+    current_teacher = nil
+    redirect_to root_path
   end
 
 end

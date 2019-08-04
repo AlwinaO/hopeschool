@@ -1,0 +1,15 @@
+<h1> <%= @student.name %>'s Profile:</h1>
+
+<p>Grade: <%= @student.grade %> </p>
+
+<p>Score: <%= @student.score %> </p>
+
+<p>Classroom: <%= @student.classroom_name %> </p>
+
+<p>Teacher: <%= @student.teacher_name %> </p>
+
+<%= link_to "Edit Student Profile", edit_teacher_student_path(@student) %> <br><br>
+
+<%= link_to "Remove Student From Your Classroom", teacher_student_path(@student), method: :delete %><br><br>
+
+<%= link_to "Back to Your Profile", teacher_path(current_teacher) %>

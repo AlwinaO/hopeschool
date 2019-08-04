@@ -1,5 +1,9 @@
 class StudentsController < ApplicationController
 
+  def index
+    @students = Student.all
+  end
+
   def new
     # check if the student is nested and it has the proper teacher id
     # binding.pry
@@ -13,34 +17,22 @@ class StudentsController < ApplicationController
   end
 
   def create
-    binding.pry
-    current_teacher = Teacher.find_by_id(params[:teacher_id])
+
     @student = current_teacher.students.build(student_params)
+
     if @student.save
-      redirect_to teacher_student_path(current_teacher, @student)
+      # binding.pry
+      redirect_to student_path(@student)
     else
       @student.build_teacher unless @student.teacher
       render :new
     end
   end
 
-  def index
-    @students = Student.all
-
-  end
 
   def show
 
-    if params[:teacher_id]
-      current_teacher = Teacher.find_by(id: params[:teacher_id])
-      # binding.pry
-      @student = current_teacher.students.find_by(id: params[:id])
-      if @student.nil?
-        redirect_to teacher_students_path(@teacher)
-      end
-    else
-      @student = Student.find_by(params[:id])
-    end
+    @student = Student.find(params[:id])
   end
 
   # create a private method to set the student by finding the current_teacher and student for the edit, update,  and destroy methods

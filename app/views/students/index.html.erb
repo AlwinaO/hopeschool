@@ -1,7 +1,8 @@
 <h1>Students</h1>
 
 <% @students.each do |student| %>
-  <ol>
-    <li> <%= link_to student.name, student_path(student) %> - <%= s.score %></li>
-  </ol>
+  <ul>
+    <li> <%= link_to student.name, student_path(student) %> - <%= student.score %> - Classroom: <%= student.classroom_name %> - Teacher: <%= student.teacher_name %>
+    </li>
+  </ul>
 <% end %>

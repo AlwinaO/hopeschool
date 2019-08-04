@@ -1,6 +1,6 @@
 <h1>Create a New Student!</h1>
 
-<%= form_for(@student, html: {class: 'form-horizontal'}) do |f| %>
+<%= form_for([:teacher, @student], html: {class: 'form-horizontal'}) do |f| %>
   <% if @student.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
@@ -9,7 +9,7 @@
       <% @student.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
-      </ul>
+      </ul> 
     </div>
   <% end %>
 

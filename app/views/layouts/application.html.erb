@@ -11,7 +11,7 @@
 
   <body>
     <div class="container"  role="main">
-      <%= render 'shared/navigation' %>
+      <%= render 'layouts/navigation' %>
         <div>
           <% flash.each do |key, value| %>
             <%= content_tag :div, value, class: "alert #{key}" %>

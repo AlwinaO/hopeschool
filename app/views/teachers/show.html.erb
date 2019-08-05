@@ -1,11 +1,39 @@
 <h2>Welcome, <%= @teacher.name %>! </h2>
 
+<h4><%= @teacher.classroom_name %> </h4>
+
 <h4>Here are a list of your students:</h4>
 
-<ol>
-  <% @teacher.students.each do |s| %>
-  <li> <%= link_to s.name, teacher_student_path(s) %> - <%= s.score %> </li>
-  <% end %>
-</ol>
+<!-- add table to list of students and include the edit or delete button  -->
+
+
+<div class="table-responsive">
+  <table class="table table-striped">
+      <thead>
+        <tr>
+
+          <th scope="col">Name</th>
+          <th scope="col">Grade</th>
+          <th scope="col">Score</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <% @teacher.students.each do |s| %>
+        <tr>
+
+          <td> <%= s.name %> </td>
+          <td> <%= s.grade %> </td>
+          <td> <%= s.score %> </td>
+          <td> <%= link_to "Show", student_path(s) %> </td>
+          <td> <%= link_to "Edit", edit_teacher_student_path(s) %> </td>
+
+        </tr>
+        <% end %>
+      </tbody>
+
+  </table>
+  <!-- <caption>List of students</caption> -->
+</div>
 
 <p> <%= link_to "Add a New Student", new_teacher_student_path(@teacher) %> </p>

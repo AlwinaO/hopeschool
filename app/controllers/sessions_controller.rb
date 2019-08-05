@@ -4,10 +4,12 @@ class SessionsController < ApplicationController
 
   end
 
+  # renders the login page, which is a form_tag
   def new
 
   end
 
+  # login the teacher if already signed up
   def create
 
     @teacher = Teacher.find_by(email: params[:teacher][:email])
@@ -17,10 +19,11 @@ class SessionsController < ApplicationController
       redirect_to teacher_path(@teacher)
     else
       #add flash message for incorrect login info
-      redirect_to login_path
+      render :new
     end
   end
 
+  # log out the teacher and redirect_to the home page
   def destroy
     session.delete(:teacher_id)
     current_teacher = nil

@@ -2,20 +2,23 @@
 
 <h3>Please create your profile:</h3>
 
-<%= form_for(@teacher) do |f| %>
+<%= bootstrap_form_for(@teacher) do |f| %>
+  <%= f.text_field :name, label: "Name:" %>
+  <%= f.email_field :email, label: "Email:" %>
+  <%= f.password_field :password, label: "Password:" %>
+  <%= f.text_field :subject, label: "Subject:" %>
+  <%= f.select :classroom, Classroom.all.collect { |c| c.name}, { label: "Select a classroom:"} %>
 
-<%= f.label :name %>
-<%= f.text_field :name %><br><br>
+  <h5>Or create a new classroom:</h5>
 
-<%= f.label :email %>
-<%= f.email_field :email %><br><br>
+    <%= f.fields_for :classroom do |classroom_form| %>
 
-<%= f.label :password %>
-<%= f.password_field :password %><br><br>
+    <%= classroom_form.text_field :name, label: "Name:" %>
 
-<%= f.label :subject %>
-<%= f.text_field :subject %><br><br>
+    <%= classroom_form.text_field :location, label: "Location:" %> <br><br>
 
-<%= f.submit "Create Teacher" %>
+    <% end %>
+
+    <%= f.primary "Create Teacher" %>
 
 <% end %>

@@ -4,9 +4,6 @@
 
 <h4>Here are a list of your students:</h4>
 
-<!-- add table to list of students and include the edit or delete button  -->
-
-
 <div class="table-responsive">
   <table class="table table-striped">
       <thead>
@@ -35,5 +32,7 @@
   </table>
   <!-- <caption>List of students</caption> -->
 </div>
+
+<p> <%= link_to "Edit your profile", edit_teacher_path(@teacher) %> </p>
 
 <p> <%= link_to "Add a New Student", new_teacher_student_path(@teacher) %> </p>

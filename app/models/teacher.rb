@@ -9,5 +9,11 @@ class Teacher < ApplicationRecord
   validates :name, :email, :subject, presence: true
   validates :email, uniqueness: true
 
+  accepts_nested_attributes_for :classroom, reject_if: :all_blank
+
+  def classroom_name
+    self.classroom ? self.classroom.name : nil
+  end
+
   #add scope method to find students with the highest or lowest score
 end

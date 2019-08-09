@@ -1,7 +1,9 @@
 class TeachersController < ApplicationController
 
+  # renders the form for a new teacher
   def new
     @teacher = Teacher.new
+    @teacher.build_classroom
   end
 
   def create
@@ -15,18 +17,31 @@ class TeachersController < ApplicationController
   end
 
   def index
-    @teachers = Teacher.all 
+    @teachers = Teacher.all
   end
 
   def show
     @teacher = Teacher.find_by(id: params[:id])
+  end
 
+  def edit
+    @teacher = Teacher.find_by(id: params[:id])
+  end
+
+  def update
+    @teacher = Teacher.find_by(id: params[:id])
+    @classroom = @teacher.build_classroom
+    if @teacher.update(teacher_params)
+      redirect_to teacher_path(@teacher)
+    else
+      render :edit
+    end
   end
 
   private
 
   def teacher_params
-    params.require(:teacher).permit(:name, :email, :password, :subject)
+    params.require(:teacher).permit(:name, :email, :password, :subject, classroom_ids: [],  classroom_attributes: [:name, :location])
 
   end
 end

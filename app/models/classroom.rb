@@ -5,7 +5,7 @@ class Classroom < ApplicationRecord
   has_many :semesters, through: :classroom_semesters
 
   validates :name, :location, presence: true
-  validates :name, :location, uniqueness: true
+  validates :name, uniqueness: true
 
 
 

@@ -17,6 +17,8 @@
   <%= f.label :classroom, "Select a classroom:" %>
   <%= f.select :classroom, Classroom.all.collect {|c| c.name}, include_blank: true %><br><br>
 
+  <h4>Or Create a New Classroom:</h4>
+
     <%= f.fields_for :classroom do |classroom_form| %>
 
       <%= classroom_form.label :name, "Name:" %>

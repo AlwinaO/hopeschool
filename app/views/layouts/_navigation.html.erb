@@ -12,6 +12,7 @@
            <%= link_to 'Sign in to your profile', login_path, class: "navbar-brand" %>
          <% else %>
            <%= link_to current_teacher.name + "'s Profile", teacher_path(current_teacher), class: "navbar-brand" %>
+           <%= link_to "Classroom List", classrooms_path, class: "navbar-brand" %>
            <%= link_to 'Log Out', logout_path, method: :delete, class: "navbar-brand" %>
          <% end %>
 

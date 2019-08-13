@@ -7,22 +7,19 @@ class StudentsController < ApplicationController
   def new
     # check if the student is nested and it has the proper teacher id
     # binding.pry
+    # when adding the classroom_id no need to build the form for the classroom; just whitelist the :classroom_id in the strong params
     @teacher = Teacher.find_by_id(params[:teacher_id])
-    @classroom = Classroom.find_by_id(params[:classroom_id])
-    if (params[:teacher_id] && @teacher) && (params[:classroom_id] && @classroom)
-      @student = @teacher.students.build && @classroom.students.build #has_many
+    if (params[:teacher_id] && @teacher)
+      @student = @teacher.students.build
     else
       @student = Student.new
       @student.build_teacher #belongs_to
-      @student.build_classroom
     end
   end
 
   def create
 
     @student = current_teacher.students.build(student_params)
-    @student.build_classroom
-    # binding.pry
     if @student.save
       # binding.pry
       redirect_to student_path(@student)
@@ -37,11 +34,10 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
   end
 
-  # create a private method to set the student by finding the current_teacher and student for the edit, update,  and destroy methods
+  # create a private method to set the student by finding the current_teacher and student for the edit, update, and destroy methods
   def edit
     current_teacher = Teacher.find_by_id(params[:teacher_id])
     @student = Student.find_by_id(params[:id])
-    @student.build_classroom
     # binding.pry
   end
 
@@ -50,7 +46,7 @@ class StudentsController < ApplicationController
     @student = Student.find_by_id(params[:id])
     # binding.pry
     if @student.update(student_params)
-      redirect_to teacher_student_path(current_teacher, @student)
+      redirect_to student_path(@student)
     else
       render :edit
     end

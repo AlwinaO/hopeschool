@@ -32,9 +32,12 @@
     </div>
   </div>
 
-
-    <%= f.label :classroom_id, "Select a classroom:" %>
-    <%= f.select :classroom_id, Classroom.all.collect {|c| c.name}, include_blank: true %><br><br>
+  <div class="field form-group">
+    <%= f.label :classroom_id, "Select a classroom:", class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.collection_select :classroom_id, Classroom.all, :id, :name, include_blank: true %>
+    </div>
+  </div>
 
   <div class="actions form-group">
     <div class="col-sm-offset-2 col-sm-10">

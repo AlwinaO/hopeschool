@@ -1,0 +1,8 @@
+<h1>All Classrooms</h1>
+
+<ol>
+  <% @classrooms.each do |c| %>
+  <li><%= link_to c.name, c %> - <%= c.location %></li>
+  <% end %>
+
+</ol>

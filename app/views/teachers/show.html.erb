@@ -23,7 +23,7 @@
           <td> <%= s.grade %> </td>
           <td> <%= s.score %> </td>
           <td> <%= link_to "Show", student_path(s) %> </td>
-          <td> <%= link_to "Edit", edit_teacher_student_path(s) %> </td>
+          <td> <%= link_to "Edit", edit_teacher_student_path(@teacher, s) %> </td>
 
         </tr>
         <% end %>

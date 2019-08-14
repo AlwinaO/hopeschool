@@ -6,10 +6,11 @@ class Student < ApplicationRecord
 
   validates :name, :grade, presence: true
 
-  scope :highest_scores, -> {order("score DESC").limit(5)}
+  scope :highest_scores, -> {where("score > ?", 75)}
   scope :best_student, -> {order("score DESC").first.name}
 
-  scope :lowest_scores, -> {order("score").limit(5)}
+  scope :lowest_scores, -> {where("score < ?", 75)}
+  # scope :lowest_scores, -> {order("score").limit(5)}
   scope :worst_student, -> {order("score").first.name}
 
   def classroom_name

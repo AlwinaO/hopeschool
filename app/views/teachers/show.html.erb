@@ -2,6 +2,21 @@
 
 <h4><%= @teacher.classroom_name %> </h4>
 
+<h3>General information about your students:</h3>
+<h5>Students with the highest score: <% @teacher.highest_score_students.each do |s| %>
+  <ul>
+    <li><%= s.name %></li>
+  </ul>
+<% end %>
+</h5>
+
+<h5>Students with the lowest score: <% @teacher.lowest_score_students.each do |s| %>
+  <ul>
+    <li><%= s.name %></li>
+  </ul>
+<% end %>
+</h5>
+
 <h4>Here are a list of your students:</h4>
 
 <div class="table-responsive">

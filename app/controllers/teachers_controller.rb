@@ -32,7 +32,7 @@ class TeachersController < ApplicationController
   def update
     @teacher = Teacher.find_by(id: params[:id])
 # binding.pry
-    if @teacher.update(teacher_params)
+    if @teacher.update_attributes(teacher_params)
       redirect_to teacher_path(@teacher)
     else
       render :edit
@@ -42,7 +42,7 @@ class TeachersController < ApplicationController
   private
 
   def teacher_params
-    params.require(:teacher).permit(:name, :email, :password, :subject,  classroom_attributes: [:id, :name, :location])
+    params.require(:teacher).permit(:name, :email, :password, :subject, classroom_attributes: [:id, :name, :location])
 
   end
 end

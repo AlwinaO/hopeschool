@@ -6,7 +6,11 @@ class Student < ApplicationRecord
 
   validates :name, :grade, presence: true
 
-  # accepts_nested_attributes_for :classroom, reject_if: :all_blank
+  scope :highest_scores, -> {order("score DESC").limit(5)}
+  scope :best_student, -> {order("score DESC").first.name}
+
+  scope :lowest_scores, -> {order("score").limit(5)}
+  scope :worst_student, -> {order("score").first.name}
 
   def classroom_name
     self.classroom ? self.classroom.name : nil

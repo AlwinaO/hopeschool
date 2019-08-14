@@ -1,17 +1,8 @@
 <h1>Create a New Student!</h1>
 
 <%= form_for([:teacher, @student], html: {class: 'form-horizontal'}) do |f| %>
-  <% if @student.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
 
-      <ul>
-      <% @student.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render partial: "layout/errors", locals: { object: @student } %>
 
   <div class="field form-group">
     <%= f.label :name, class: 'col-sm-2 control-label' %>
@@ -32,7 +23,7 @@
     </div>
   </div>
 
-  <!-- need to add classroom selection box -->
+
   <div class="field form-group">
     <%= f.label :classroom_id, "Select a classroom:", class: 'col-sm-2 control-label' %>
     <div class="col-sm-10">

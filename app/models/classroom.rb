@@ -10,6 +10,12 @@ class Classroom < ApplicationRecord
 
 
   # list the teacher, number of students and the current semester
+  def teacher_name
+    self.teacher ? self.teacher.name : nil
+  end
 
+  def student_count
+    self.students.count
+  end
 
 end

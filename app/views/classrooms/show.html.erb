@@ -1,1 +1,33 @@
 <h1><%= @classroom.name %> </h1>
+
+<h4><%= @classroom.teacher_name %> </h4>
+
+<h4>Total Students: <%= @classroom.student_count %> </h4>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+      <thead>
+        <tr>
+
+          <th scope="col">Name</th>
+          <th scope="col">Grade</th>
+          <th scope="col">Score</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <% @classroom.students.each do |s| %>
+        <tr>
+
+          <td> <%= s.name %> </td>
+          <td> <%= s.grade %> </td>
+          <td> <%= s.score %> </td>
+          <td> <%= link_to "Show", student_path(s) %> </td>
+
+        </tr>
+        <% end %>
+      </tbody>
+
+  </table>
+  <!-- <caption>List of students</caption> -->
+</div>

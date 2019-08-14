@@ -2,7 +2,7 @@
 
 <%= form_for([:teacher, @student], html: {class: 'form-horizontal'}) do |f| %>
 
-  <%= render partial: "layout/errors", locals: { object: @student } %>
+  <%= render partial: "layouts/errors", locals: { object: @student } %>
 
   <div class="field form-group">
     <%= f.label :name, class: 'col-sm-2 control-label' %>

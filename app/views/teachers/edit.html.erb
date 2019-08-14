@@ -2,7 +2,7 @@
 
 <%= form_for(@teacher) do |f| %>
 
-<%= render partial: "layout/errors", locals: { object: @teacher } %>
+<%= render partial: "layouts/errors", locals: { object: @teacher } %>
 
   <%= f.label :name, "Name:" %>
   <%= f.text_field :name %> <br><br>
@@ -17,7 +17,7 @@
   <%= f.text_field :subject %> <br><br>
 
   <%= f.label :classroom, "Select a classroom:" %>
-  <%= f.select :classroom, Classroom.all.collect {|c| c.name}, include_blank: true %><br><br>
+  <%= f.select :classroom, Classroom.all, :id, :name, include_blank: true %><br><br>
 
   <h4>Or Create a New Classroom:</h4>
 

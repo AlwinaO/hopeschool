@@ -4,7 +4,7 @@
 
 <%= form_for(@teacher) do |f| %>
 
-<%= render partial: "layout/errors", locals: { object: @teacher } %>
+<%= render partial: "layouts/errors", locals: { object: @teacher } %>
 
   <%= f.label :name, "Name:" %>
   <%= f.text_field :name %> <br><br>

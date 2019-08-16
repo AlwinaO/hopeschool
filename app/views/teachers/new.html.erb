@@ -30,6 +30,17 @@
 
     <% end %>
 
+  <h4>Semester information:</h4>
+
+    <%= f.fields_for :teacher_semesters do |semester_form| %>
+
+      <%= semester_form.label :teacher_grade, "Grade:" %>
+      <%= semester_form.text_field :teacher_grade %><br><br>
+
+
+
+    <% end %>
+
   <%= f.submit  "Create Teacher" %>
 
 <% end %>

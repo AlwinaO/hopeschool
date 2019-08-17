@@ -1,0 +1,8 @@
+<h1>Semester List</h1>
+
+<ol>
+  <% @semesters.each do |semester| %>
+  <li><%= semester.quarter %> - <%= semester.formatted_year %>
+  </li>
+  <% end %>
+</ol>

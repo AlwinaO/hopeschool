@@ -1,0 +1,13 @@
+<h1>Create a New Semester:</h1>
+
+<%= form_for @semester do |f| %>
+
+  <%= f.label :quarter, "Quarter:" %>
+  <%= f.text_field :quarter %><br><br>
+
+  <%= f.label :year, "Year:" %>
+  <%= f.date_field :year %><br><br>
+
+  <%= f.submit "Create Semseter" %>
+
+<% end %>

@@ -1,0 +1,12 @@
+<%= form_for @teacher_semester do |f| %>
+
+  <%= f.label :teacher_grade %>
+  <%= f.number_field :teacher_grade %>
+
+  <%= f.label :semester_id %>
+  <%= f.collection_select :semester_id, Semester.all, :id, :quarter_year, include_blank: true %>
+
+  <%= f.hidden_field :teacher_id, value: current_teacher.id %>
+
+  <%= f.submit %>
+<% end %>

@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
   resources :semesters
+
+  resources :teacher_semesters, only: [:new, :create]
+  
   resources :classrooms
 
   resources :teachers do

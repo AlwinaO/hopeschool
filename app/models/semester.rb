@@ -10,6 +10,9 @@ class Semester < ApplicationRecord
 
   def formatted_year
     self.year.strftime("%Y") if self.year
+  end
 
+  def quarter_year
+    self.quarter + "-" + self.formatted_year
   end
 end

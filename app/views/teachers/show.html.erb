@@ -3,10 +3,11 @@
 <h4><%= @teacher.classroom_name %> </h4>
 
 <h4> <% @teacher.semesters.each do |semester| %>
-    <%= semester.quarter %>
-    <%= semester.year %>
+    <%= semester.quarter_year %>
   <% end %>
 </h4>
+
+<h4> <%= @teacher.grade_format %> </h4>
 
 <h3>General information about your students:</h3>
 <h5>Students with the highest score: <% @teacher.highest_score_students.each do |s| %>
@@ -54,7 +55,7 @@
   <!-- <caption>List of students</caption> -->
 </div>
 
-<p> <%= link_to "Add a Grade", new_teacher_semester_path(@teacher_semester) %> </p>
+<p> <%= link_to "Add a Grade", new_teacher_teacher_semester_path(current_teacher, @teacher_semester) %> </p>
 
 <p> <%= link_to "Edit your profile", edit_teacher_path(@teacher) %> </p>
 

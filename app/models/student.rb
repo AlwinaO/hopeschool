@@ -20,4 +20,6 @@ class Student < ApplicationRecord
   def teacher_name
     self.teacher ? self.teacher.name : nil
   end
+
+
 end

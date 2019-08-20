@@ -7,13 +7,16 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy'
   resources :semesters
 
-  resources :teacher_semesters, only: [:new, :create]
-  
   resources :classrooms
 
   resources :teachers do
     resources :students #, only: [:new, :create, :edit, :update, :destroy]
+    resources :teacher_semesters, only: [:new, :create]
   end
+
+  # resources :teachers do
+  #
+  # end
 
   resources :students, only: [:index, :show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -1,12 +1,12 @@
-<%= form_for @teacher_semester do |f| %>
+<%= form_for [current_teacher, @teacher_semester] do |f| %>
 
   <%= f.label :teacher_grade %>
-  <%= f.number_field :teacher_grade %>
+  <%= f.number_field :teacher_grade %><br><br>
 
   <%= f.label :semester_id %>
-  <%= f.collection_select :semester_id, Semester.all, :id, :quarter_year, include_blank: true %>
+  <%= f.collection_select :semester_id, Semester.all, :id, :quarter_year, include_blank: true %><br><br>
 
-  <%= f.hidden_field :teacher_id, value: current_teacher.id %>
+  <%= f.hidden_field :teacher_id, value: current_teacher.id %><br><br>
 
-  <%= f.submit %>
+  <%= f.submit "Add Grade" %>
 <% end %>

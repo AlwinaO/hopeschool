@@ -4,7 +4,8 @@ class TeachersController < ApplicationController
   def new
     @teacher = Teacher.new
     @teacher.build_classroom
-    @teacher.teacher_semesters.build
+    @teacher.semesters.build
+    # @teacher.teacher_semesters.build
   end
 
   def create
@@ -43,7 +44,7 @@ class TeachersController < ApplicationController
   private
 
   def teacher_params
-    params.require(:teacher).permit(:name, :email, :password, :subject, classroom_attributes: [:id, :name, :location], teacher_semesters_attributes: [:teacher_grade])
+    params.require(:teacher).permit(:name, :email, :password, :subject, classroom_attributes: [:id, :name, :location])
 
   end
 end

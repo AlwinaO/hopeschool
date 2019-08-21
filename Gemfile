@@ -36,8 +36,6 @@ gem 'bcrypt', '~> 3.1.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
-gem 'dotenv-rails'
-
 gem 'bootstrap-sass', '~> 3.4.1'
 
 gem "bootstrap_form", ">= 4.2.0"
@@ -47,6 +45,17 @@ gem 'autoprefixer-rails'
 gem 'jquery-rails'
 
 gem 'faker'
+
+# Omniauth gems
+gem 'figaro'
+
+gem 'dotenv-rails'
+
+gem 'omniauth'
+
+gem 'omniauth-facebook'
+
+gem 'thin'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

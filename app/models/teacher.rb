@@ -15,6 +15,20 @@ class Teacher < ApplicationRecord
   # accepts_nested_attributes_for :semesters
   # accepts_nested_attributes_for :teacher_semesters, allow_destroy: true, reject_if: lambda {|attributes| attributes['teacher_grade'].blank?}
 
+  def self.create_with_omniauth(auth)
+    teacher = Teacher.find_or_create_by(uid: auth['uid'], provider: auth['provider'])
+       teacher.name = auth['info']['name']
+       teacher.email = auth['info']['email']
+       teacher.password = auth['uid']
+
+       if teacher.exists?
+         teacher
+       else
+         teacher.save!
+         teacher
+       end
+  end
+
   def classroom_name
     self.classroom ? self.classroom.name : nil
   end

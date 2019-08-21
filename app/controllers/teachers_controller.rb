@@ -24,6 +24,8 @@ class TeachersController < ApplicationController
 
   def show
     @teacher = Teacher.find_by(id: params[:id])
+    # @teacher = Teacher.find(1) 
+    # @test_instance_variable = @teacher.grade_format 
   end
 
   def edit

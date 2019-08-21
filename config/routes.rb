@@ -2,9 +2,16 @@ Rails.application.routes.draw do
 
   root 'sessions#welcome'
 
+  get '/signup' => 'teachers#new'
+  post '/signup' => 'teachers#create'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
+
+  # omniauth login
+  get '/auth/facebook/callback' => 'sessions#create'
+  get 'auth/failure', to: redirect('/')
+
   resources :semesters
 
   resources :classrooms

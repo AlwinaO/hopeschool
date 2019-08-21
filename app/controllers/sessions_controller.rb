@@ -11,12 +11,14 @@ class SessionsController < ApplicationController
 
   # login the teacher if already signed up
   def create
-
-    @teacher = Teacher.find_by(email: params[:teacher][:email])
-
-    if @teacher && @teacher.authenticate(params[:password])
-      session[:teacher_id] = @teacher.id
-      redirect_to teacher_path(@teacher)
+    if request.env['omniauth.auth']
+      teacher = Teacher.create_with_omniauth(auth)
+      session[:teacher_id] = teacher.id
+      redirect_to teacher_path(teacher)
+    elsif teacher = Teacher.find_by_email(params[:email])
+      teacher && teacher.authenticate(params[:password])
+      session[:teacher_id] = teacher.id
+      redirect_to teacher_path(teacher.id)
     else
       #add flash message for incorrect login info
       render :new
@@ -30,4 +32,9 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 
+  private
+
+    def auth
+      request.env['omniauth.auth']
+    end
 end

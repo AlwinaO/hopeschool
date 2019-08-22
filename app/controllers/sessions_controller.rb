@@ -11,10 +11,11 @@ class SessionsController < ApplicationController
 
   # login the teacher if already signed up
   def create
+    # binding.pry
     if request.env['omniauth.auth']
       teacher = Teacher.create_with_omniauth(auth)
       session[:teacher_id] = teacher.id
-      redirect_to teacher_path(teacher)
+      redirect_to teacher_path(teacher.id)
     elsif teacher = Teacher.find_by_email(params[:email])
       teacher && teacher.authenticate(params[:password])
       session[:teacher_id] = teacher.id

@@ -8,7 +8,7 @@ class Teacher < ApplicationRecord
   has_many :teacher_semesters, inverse_of: :teacher
   has_many :semesters, through: :teacher_semesters
 
-  validates :name, :email, :subject, presence: true
+  validates :name, :email, presence: true
   validates :email, uniqueness: true
 
   accepts_nested_attributes_for :classroom, reject_if: :all_blank
@@ -16,12 +16,12 @@ class Teacher < ApplicationRecord
   # accepts_nested_attributes_for :teacher_semesters, allow_destroy: true, reject_if: lambda {|attributes| attributes['teacher_grade'].blank?}
 
   def self.create_with_omniauth(auth)
-    teacher = Teacher.find_or_create_by(uid: auth['uid'], provider: auth['provider'])
+    teacher = find_or_create_by(uid: auth['uid'], provider: auth['provider'])
        teacher.name = auth['info']['name']
        teacher.email = auth['info']['email']
        teacher.password = auth['uid']
 
-       if teacher.exists?
+       if Teacher.exists?(teacher.id)
          teacher
        else
          teacher.save!

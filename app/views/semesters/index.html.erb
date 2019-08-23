@@ -2,7 +2,7 @@
 
 <ol>
   <% @semesters.each do |semester| %>
-  <li><%= semester.quarter %> - <%= semester.formatted_year %>
+  <li><%= link_to semester.quarter, semester_path(semester) %> - <%= semester.formatted_year %>
   </li>
   <% end %>
 </ol>

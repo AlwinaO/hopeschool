@@ -1,33 +1,3 @@
 <h1>Update your profile:</h1>
 
-<%= form_for(@teacher) do |f| %>
-
-<%= render partial: "layouts/errors", locals: { object: @teacher } %>
-
-  <%= f.label :name, "Name:" %>
-  <%= f.text_field :name %> <br><br>
-
-  <%= f.label :email, "Email:" %>
-  <%= f.email_field :email %> <br><br>
-
-  <%= f.label :password, "Password:" %>
-  <%= f.password_field :password %> <br><br>
-
-  <%= f.label :subject, "Subject:" %>
-  <%= f.text_field :subject %> <br><br>
-
-  <h4>Classroom information:</h4>
-
-    <%= f.fields_for :classroom do |classroom_form| %>
-
-      <%= classroom_form.label :name, "Name:" %>
-      <%= classroom_form.text_field :name %><br><br>
-
-      <%= classroom_form.label :location, "Location:" %>
-      <%= classroom_form.text_field :location %><br><br>
-
-    <% end %>
-
-  <%= f.submit  "Edit Teacher" %>
-
-<% end %>
+<%= render partial: 'form' %>

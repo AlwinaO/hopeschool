@@ -17,6 +17,10 @@ class SemestersController < ApplicationController
     end
   end
 
+  def show
+    @semester = Semester.find_by(id: params[:id])
+  end
+
   def edit
     @semester = Semester.find_by(id: params[:id])
   end

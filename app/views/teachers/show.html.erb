@@ -2,6 +2,12 @@
 
 <h4><%= @teacher.classroom_name %> </h4>
 
+<% if @teacher.teacher_semesters.exists? %>
+<h4><%= @teacher.teacher_semesters.grade_format %> </h4>
+<% else %>
+<h4>Teacher Grade not available, please click below to add a grade.</h4>
+<% end %>
+
 <h4> <% @teacher.semesters.each do |semester| %>
     <%= semester.quarter_year %>
   <% end %>

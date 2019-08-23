@@ -33,7 +33,7 @@ class Teacher < ApplicationRecord
     self.classroom ? self.classroom.name : nil
   end
 
-  # def grade_format
-  #   self.teacher_semesters ? self.teacher_semesters.collect { |ts| ts.teacher_grade.to_i} : nil
-  # end
+  def grade_format
+    self.teacher_semesters ? self.teacher_semesters.to_a.map do |ts| puts ts.teacher_grade end : nil
+  end
 end

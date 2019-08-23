@@ -1,0 +1,38 @@
+<%= render partial: "layouts/errors", locals: { object: @student } %>
+
+<%= form_for([current_teacher, @student], html: {class: 'form-horizontal'}) do |f| %>
+
+  <div class="field form-group">
+    <%= f.label :name, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="field form-group">
+    <%= f.label :grade, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.number_field :grade, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="field form-group">
+    <%= f.label :score, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.number_field :score, class: 'form-control' %>
+    </div>
+  </div>
+
+
+  <div class="field form-group">
+    <%= f.label :classroom_id, "Select a classroom:", class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.collection_select :classroom_id, Classroom.all, :id, :name, include_blank: true %>
+    </div>
+  </div>
+
+    <div class="actions form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <%= f.submit %>
+      </div>
+    </div>
+
+<% end %>

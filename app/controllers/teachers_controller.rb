@@ -1,5 +1,5 @@
 class TeachersController < ApplicationController
-
+  before_action :set_teacher, only:[:show, :edit, :update]
 
   # renders the form for a new teacher
   def new
@@ -24,16 +24,13 @@ class TeachersController < ApplicationController
   end
 
   def show
-    @teacher = Teacher.find_by(id: params[:id])
   end
 
   def edit
-    @teacher = Teacher.find_by(id: params[:id])
     @classroom = @teacher.build_classroom
   end
 
   def update
-    @teacher = Teacher.find_by(id: params[:id])
 # binding.pry
     if @teacher.update_attributes(teacher_params)
       flash[:notice] = "Your profile has been successfully updated."
@@ -47,6 +44,9 @@ class TeachersController < ApplicationController
 
   def teacher_params
     params.require(:teacher).permit(:name, :email, :password, :subject, classroom_attributes: [:id, :name, :location])
+  end
 
+  def set_teacher
+    @teacher = Teacher.find_by(id: params[:id])
   end
 end

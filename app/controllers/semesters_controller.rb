@@ -1,5 +1,7 @@
 class SemestersController < ApplicationController
 
+  before_action :set_semester, only:[:show, :edit, :update]
+
   def index
     @semesters = Semester.all
   end
@@ -18,15 +20,12 @@ class SemestersController < ApplicationController
   end
 
   def show
-    @semester = Semester.find_by(id: params[:id])
   end
 
   def edit
-    @semester = Semester.find_by(id: params[:id])
   end
 
   def update
-    @semester = Semester.find_by(id: params[:id])
     if @semester.update(semester_params)
       redirect_to semesters_path
     else
@@ -38,5 +37,9 @@ class SemestersController < ApplicationController
 
     def semester_params
       params.require(:semester).permit(:quarter, :year)
+    end
+
+    def set_semester
+      @semester = Semester.find_by(id: params[:id])
     end
 end

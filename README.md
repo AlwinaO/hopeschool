@@ -26,8 +26,11 @@ This app uses the following tech stack:
 
 For a walkthrough of how the app works, view here: https://youtu.be/tB9cjMfeqws
 
+<<<<<<< HEAD
 ![gif-hopeschool-walkthrough](https://user-images.githubusercontent.com/22036904/63730752-9aa9fa00-c83a-11e9-8587-1c8cbcb5c868.gif)
 
+=======
+>>>>>>> bdb3ffb06fe51563197fd4a64610edb4cdf40172
 ## Future updates to app
 
 - Add bootstrap to additional pages in the app

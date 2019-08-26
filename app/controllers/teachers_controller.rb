@@ -1,19 +1,20 @@
 class TeachersController < ApplicationController
 
+
   # renders the form for a new teacher
   def new
     @teacher = Teacher.new
     @teacher.build_classroom
-    @teacher.semesters.build
-    # @teacher.teacher_semesters.build
   end
 
   def create
     @teacher = Teacher.new(teacher_params)
     if @teacher.save
+      flash[:notice] = "Your profile has been successfully created."
       session[:teacher_id] = @teacher.id
       redirect_to teacher_path(@teacher)
     else
+      flash.now[:error] = "Your profile was not created. Please try again."
       render :new
     end
   end
@@ -24,8 +25,6 @@ class TeachersController < ApplicationController
 
   def show
     @teacher = Teacher.find_by(id: params[:id])
-    # @teacher = Teacher.find(1) 
-    # @test_instance_variable = @teacher.grade_format 
   end
 
   def edit
@@ -37,6 +36,7 @@ class TeachersController < ApplicationController
     @teacher = Teacher.find_by(id: params[:id])
 # binding.pry
     if @teacher.update_attributes(teacher_params)
+      flash[:notice] = "Your profile has been successfully updated."
       redirect_to teacher_path(@teacher)
     else
       render :edit

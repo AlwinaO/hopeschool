@@ -11,8 +11,8 @@ class SessionsController < ApplicationController
 
   # login the teacher if already signed up
   def create
-    if @teacher = Teacher.find_by(email: params[:teacher][:email])
-      @teacher && @teacher.authenticate(params[:password])
+    @teacher = Teacher.find_by(email: params[:teacher][:email])
+    if @teacher && @teacher.authenticate(params[:password])
       set_session_and_redirect
     else
       flash.now[:error] = "You were not logged in. Please try again."

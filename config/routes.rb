@@ -16,11 +16,11 @@ Rails.application.routes.draw do
 
   resources :classrooms
 
+  get '/teachers/most_students' => 'teachers#most_students'
   resources :teachers do
     resources :students #, only: [:new, :create, :edit, :update, :destroy]
     resources :teacher_semesters, only: [:new, :create]
   end
-
   # resources :teachers do
   #
   # end

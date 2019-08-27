@@ -15,6 +15,10 @@ class Teacher < ApplicationRecord
   # accepts_nested_attributes_for :semesters
   # accepts_nested_attributes_for :teacher_semesters, allow_destroy: true, reject_if: lambda {|attributes| attributes['teacher_grade'].blank?}
 
+  def self.most_students
+    left_joins(:students).group(:id).order('COUNT(students.id) DESC').first.name
+  end
+
   def self.create_with_google_omniauth(auth)
     find_or_create_by(email: auth[:info][:email]) do |t|
       t.name = auth.info.name

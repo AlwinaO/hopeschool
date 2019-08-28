@@ -2,6 +2,10 @@ class StudentsController < ApplicationController
 
   before_action :set_teacher, only:[:new, :edit, :update, :destroy]
   before_action :set_student, only:[:show, :edit, :update, :destroy]
+  before_action only:[:edit, :update, :destroy] do
+                redirect_if_not_authorized_to_edit_student(@student)
+              end
+
 
   def index
     @students = Student.all
@@ -35,11 +39,9 @@ class StudentsController < ApplicationController
   end
 
   def edit
-    redirect_if_not_authorized_to_edit(@student)
   end
 
   def update
-    redirect_if_not_authorized_to_edit(@student)
     if @student.update(student_params)
       flash[:notice] = "Student profile has been successfully updated."
       redirect_to student_path(@student)
@@ -49,7 +51,6 @@ class StudentsController < ApplicationController
   end
 
   def destroy
-    redirect_if_not_authorized_to_edit(@student)
     @student.destroy
     redirect_to teacher_students_path
   end

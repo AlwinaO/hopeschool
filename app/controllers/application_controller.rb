@@ -15,14 +15,25 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    def authorized_to_edit?(student)
+    def authorized_to_edit_student?(student)
       student.teacher == current_teacher
     end
 
-    def redirect_if_not_authorized_to_edit(student)
-      if !authorized_to_edit?(student)
+    def redirect_if_not_authorized_to_edit_student(student)
+      if !authorized_to_edit_student?(student)
         flash[:error] = "You must be the teacher to edit this student."
         redirect_to teacher_path(current_teacher)
+      end
+    end
+
+    def authorized_to_edit_teacher?(teacher)
+      teacher == current_teacher
+    end
+
+    def redirect_if_not_authorized_to_edit_teacher(teacher)
+      if !authorized_to_edit_teacher?(teacher)
+        flash[:error] = "You must be the teacher to edit that profile."
+        redirect_to teachers_path
       end
     end
 end

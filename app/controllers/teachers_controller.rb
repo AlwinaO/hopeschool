@@ -28,6 +28,11 @@ class TeachersController < ApplicationController
   end
 
   def show
+    # add @teacher.highest_score_students method call
+  end
+
+  def most_students
+    @teacher = Teacher.most_students
   end
 
   def edit

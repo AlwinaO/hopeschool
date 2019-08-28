@@ -1,5 +1,9 @@
 class TeachersController < ApplicationController
+  before_action :require_login, only:[:show, :edit, :update]
   before_action :set_teacher, only:[:show, :edit, :update]
+  before_action only:[:edit, :update] do
+                redirect_if_not_authorized_to_edit_teacher(@teacher)
+              end
 
   # renders the form for a new teacher
   def new
